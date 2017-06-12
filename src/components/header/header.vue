@@ -1,36 +1,70 @@
 <template>
-<header>
+<transition name="fade">
+<header v-show="!rolldown">
 	<div class="search">
 		<div class="search-icon"></div>
+		<div class="search-text">搜索node内容</div>
 	</div>
+	<div class="touch"></div>
 </header>
+</transition>
 </template>
 
 <script>
 	export default{
-
+		name:'header',
+		computed:{
+			rolldown() {
+				return this.$store.state.rollDown;
+			}
+		}
 	}
 </script>
 <style lang="scss" scoped>
+.fade-enter-active {
+  transition: all .3s ease-in-out;
+}
+.fade-leave-active {
+  transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.fade-enter, .fade-leave-active {
+  transform: translateY(-60px);
+  opacity: 0;
+}
 	header{
 		position: fixed;
 		height: 1.4rem;
 		width:100%;
-		background: #747474;
-	
+		background: #444444;
 	 .search{
-		    width: 80%;
+		    width: 8rem;
 		    height: 1rem;
-	     	background: #eee;
-	     	position: absolute;
-	     	left: 50%;
-	     	top: 50%;
-	     	transform:translate(-55%,-50%);
-	     	.search-icon{
-	     		width:1rem;
-	     		height:1rem;
-	     		background: #fff;
+	     	background: #595959;
+	     	border-radius: 2px;
+	     	margin-top: 0.2rem;
+	     	margin-left: 0.6rem;
+	     	float: left;
+	     	div{
+	     		float: left;
+	     		height: 1rem;
+	     		line-height: 1rem;
+	     		color: #eee;
+	     		font-size: 16px;
 	     	}
+	     	.search-icon{
+	     		width:1.5rem;
+	     		height:1rem;
+	     		background: url("./search.svg") no-repeat 50% 50%;
+	     		background-size: 40%;
+	     	}
+	  }
+	  .touch{
+	  	float: right;
+	  	background: url("./lightning.svg") no-repeat 50% 50%;
+	  	background-size: 70%;
+	  	width: 1.4rem;
+	  	height: 1rem;
+	  	margin-top:0.2rem;
 	  }
 	}
 </style>

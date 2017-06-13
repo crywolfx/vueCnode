@@ -23,8 +23,16 @@
 		computed:{
 			rolldown() {
 				return this.$store.state.rollDown;
-			}
-		}
+			},
+			// type() {
+			// 	return this.$store.state.type;
+			// },
+		},
+		// watch: {
+		// 	type(val){
+		// 		this.active=val;
+		// 	}
+		// }
 	}
 </script>
 <style lang="scss" scoped>
@@ -51,43 +59,43 @@
 			flex:1;
 		}
 		.all{
-		    background: url(./svg/all.svg) no-repeat 50% 50%;
+		    background: url(../../assets/svg/all.svg) no-repeat 50% 50%;
 		    background-size: 30%;
 		}
 		.allAct{
-			background: url(./svg/allAct.svg) no-repeat 50% 50%;
+			background: url(../../assets/svg/allAct.svg) no-repeat 50% 50%;
 		    background-size: 30%;
 		}
 		.good{
-			background: url(./svg/good.svg) no-repeat 50% 50%;
+			background: url(../../assets/svg/good.svg) no-repeat 50% 50%;
 		    background-size: 30%;
 		}
 		.goodAct{
-			background: url(./svg/goodAct.svg) no-repeat 50% 50%;
+			background: url(../../assets/svg/goodAct.svg) no-repeat 50% 50%;
 		    background-size: 30%;
 		}
 		.share{
-			background: url(./svg/share.svg) no-repeat 50% 50%;
+			background: url(../../assets/svg/share.svg) no-repeat 50% 50%;
 		    background-size: 30%;
 		}
 		.shareAct{
-			background: url(./svg/shareAct.svg) no-repeat 50% 50%;
+			background: url(../../assets/svg/shareAct.svg) no-repeat 50% 50%;
 		    background-size: 30%;
 		}
 		.ask{
-			background: url(./svg/ask.svg) no-repeat 50% 50%;
+			background: url(../../assets/svg/ask.svg) no-repeat 50% 50%;
 		    background-size: 30%;
 		}
 		.askAct{
-			background: url(./svg/askAct.svg) no-repeat 50% 50%;
+			background: url(../../assets/svg/askAct.svg) no-repeat 50% 50%;
 		    background-size: 30%;
 		}
 		.job{
-			background: url(./svg/job.svg) no-repeat 50% 50%;
+			background: url(../../assets/svg/job.svg) no-repeat 50% 50%;
 		    background-size: 30%;
 		}
 		.jobAct{
-			background: url(./svg/jobAct.svg) no-repeat 50% 50%;
+			background: url(../../assets/svg/jobAct.svg) no-repeat 50% 50%;
 		    background-size: 30%;
 		}
 	}

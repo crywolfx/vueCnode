@@ -1,16 +1,12 @@
 <template>
   <div id="app">
-    <vheader></vheader>
-    <router-view></router-view>
-    <vcontent></vcontent>
-    <vfooter></vfooter>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 
 <script>
-  import header from './components/header/header'
-  import footer from './components/footer/footer'
-  import content from './components/content/index'
 export default {
   name: 'app',
   data() {
@@ -19,13 +15,11 @@ export default {
     };
   },
   components: {
-      vheader:header,
-      vfooter:footer,
-      vcontent:content,
+
+
   }
 }
 </script>
-
 <style scoped>
-
+@import "./assets/css/reset.css";
 </style>

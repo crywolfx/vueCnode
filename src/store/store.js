@@ -16,7 +16,7 @@ const store = new Vuex.Store({
 		},
 		SET_ROLLDOWN(state,bool) {
 			state.rollDown=bool;
-		}
+		},
 	},
 	actions: {
 

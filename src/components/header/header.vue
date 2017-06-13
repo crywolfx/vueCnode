@@ -16,7 +16,7 @@
 		computed:{
 			rolldown() {
 				return this.$store.state.rollDown;
-			}
+			},
 		}
 	}
 </script>
@@ -34,6 +34,8 @@
 	header{
 		position: fixed;
 		height: 1.4rem;
+		top:0;
+		left: 0;
 		width:100%;
 		background: #444444;
 	 .search{
@@ -54,13 +56,13 @@
 	     	.search-icon{
 	     		width:1.5rem;
 	     		height:1rem;
-	     		background: url("./search.svg") no-repeat 50% 50%;
+	     		background: url("../../assets/svg/search.svg") no-repeat 50% 50%;
 	     		background-size: 40%;
 	     	}
 	  }
 	  .touch{
 	  	float: right;
-	  	background: url("./lightning.svg") no-repeat 50% 50%;
+	  	background: url("../../assets/svg/lightning.svg") no-repeat 50% 50%;
 	  	background-size: 70%;
 	  	width: 1.4rem;
 	  	height: 1rem;

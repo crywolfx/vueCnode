@@ -76,4 +76,15 @@ html,body {
 	padding: 0.2rem 0.2rem;
 	border: 1px solid #fff;
 }
+.com-text code{
+	display: block;
+	width: 100%;
+	white-space: normal; 
+	margin: 0.2rem 0;
+	background: #eee;
+	color: #666;
+}
+.com-text img{
+	width: 100%;
+}
 /*html {font-size: 75px!important;}*/

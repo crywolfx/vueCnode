@@ -5,7 +5,7 @@
 		<div class="search-icon"></div>
 		<div class="search-text">搜索node内容</div>
 	</div>
-	<div class="touch"></div>
+	<div class="touch" @click="checkAside"></div>
 </header>
 </transition>
 </template>
@@ -17,6 +17,11 @@
 			rolldown() {
 				return this.$store.state.rollDown;
 			},
+		},
+		methods: {
+			checkAside() {
+				this.$store.commit('CHECK_ASIDE',true)
+			}
 		}
 	}
 </script>

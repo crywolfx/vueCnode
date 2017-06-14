@@ -5,5 +5,11 @@ export default{
 	},
 	getTopic(id){
 		return `${_baseUrl}/topic/${id}`;
+	},
+	login() {
+		return `${_baseUrl}/accesstoken`;
+	},
+	personal(loginname) {
+		return `${_baseUrl}/user/${loginname}`;
 	}
 }

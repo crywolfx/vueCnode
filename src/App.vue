@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <vaside></vaside>
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
@@ -7,6 +8,7 @@
 </template>
 
 <script>
+import aside from './components/aside/aside'
 export default {
   name: 'app',
   data() {
@@ -15,8 +17,7 @@ export default {
     };
   },
   components: {
-
-
+    vaside:aside,
   }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="fa">
 	<vheader></vheader>
 	<div class="content">
 		<ul>
@@ -19,6 +19,7 @@
 				<div class="related">
 				<span>{{value.data.visit_count}}浏览·</span>
 				<span>{{value.data.reply_count}}评论</span>
+				<span>{{use.formatDate(value.data.last_reply_at)}}</span>
 				</div>
 			</li>
 		</ul>
@@ -139,6 +140,12 @@ import footer from '../footer/footer'
 .gotop-enter, .gotop-leave-active {
   transform: translateX(60px);
   opacity: 0;
+}
+.fa{
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	background: #F2F4F7;
 }
 	.content{
 		padding-top: 1.4rem;

@@ -1,14 +1,14 @@
 <template>
 <transition name="fade">
 <div>
-	<div class="art-content" v-show="!isCheckCom">
+	<div class="art-content" v-if="!isCheckCom">
 		<header>
 			<div class="back" @click="$router.go(-1)"></div>
 			<div class="search">{{title}}</div>
 			<div class="ctrl"></div>
 			<div class="share"></div>
 		</header>
-		<div>  <!--bug -->
+		<div  ref="scrollContent">  <!--bug -->
 			<div class="art-detail-list">
 			    <div class="art-title">{{dataRes.title}}</div>
 			    <div class="art-author" v-show="!isloading">
@@ -20,7 +20,7 @@
 			    <section ref="article" class="art-res-content" v-html="dataRes.content"></section>
 			    <div class="info" v-show="!isloading">
 			    	<div>创建于 {{createTime}}</div>
-			    	<div>编辑于 {{lastReply}}</div>
+			    	<div>编辑于 {{use.formatDate(lastReply)}}</div>
 			    	<div>著作权归作者所有</div>
 			    </div>
 		    </div>
@@ -45,7 +45,7 @@
 		</footer>
 	</transition>
 	</div>
-	<vcomment v-show="isCheckCom" @isCheckCom="changeCheckCom" :comm="dataRes.replies"></vcomment>
+	<vcomment v-if="isCheckCom" @isCheckCom="changeCheckCom" :comm="dataRes.replies"></vcomment>
 </div>
 </transition>
 </template>
@@ -80,7 +80,7 @@ import comment from '../comment/comment'
 			scrollTop(val,oldval) {
 				val>window.innerHeight ? this.title=this.dataRes.title : this.title="搜索node内容";
 				val>window.innerHeight ? this.isgotop=true : this.isgotop=false;
-				if(this.isgotop&&val>oldval){
+				if(this.isgotop&&val>oldval&&(val+window.innerHeight)!=document.body.scrollHeight){
 					this.isScroll=true;
 				}else{
 					this.isScroll=false;
@@ -112,7 +112,6 @@ import comment from '../comment/comment'
 					if(res.data.success==true){
 						this.isloading=false;
 						this.dataRes=res.data.data;
-						console.log(this.dataRes);
 						let yymmdd=this.dataRes.create_at.split('T')[0];
 						let time=this.dataRes.create_at.split('T')[1].split('.')[0];
 						this.createTime=yymmdd+' '+time;
@@ -278,7 +277,7 @@ import comment from '../comment/comment'
 				width: 100%;
 				padding: 0.3rem 0.3rem 0 0.3rem;
 				width:100%;
-				// overflow: hidden;
+				overflow: hidden;
 			}
 			.info{
 				float: right;

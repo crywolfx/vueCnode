@@ -12,12 +12,14 @@
 					<div class="com-name"><b>{{value.author.loginname}}</b></div>
 					<div class="com-text" v-html="value.content"></div>
 					<div class="com-about">
-						<span class="com-time">1.1.1</span>
+						<span class="com-time">{{use.formatDate(value.create_at)}}</span>
 						<span class="com-up">{{value.ups.length}}</span>
 					</div>
 				</div>
 			</li>
 		</ul>
+		<div class="tip">~没有更多内容~</div>
+		<div class="footer"></div>
 	</div>
 </transition>
 </template>
@@ -38,6 +40,9 @@
 		methods: {
 			back() {
 				this.$emit('isCheckCom',false);
+			},
+			sort() {
+				this.comm.reverse();
 			}
 		},
 	}
@@ -55,7 +60,7 @@
   opacity: 0;
 }
 .com-content{
-	height: 100%;
+	// height: 100%;
 	width: 100%;
 }
 	.header{
@@ -100,25 +105,52 @@
 			.com-detail{
 				width: 80%;
 				box-sizing: border-box;
-				padding: 0 10px 0 0;
+				padding: 0 10px 10px 0;
+				border-bottom: 1px solid #EFEFEF;
 				.com-name{
 					padding: 0 0 0.14rem 0;
+					font-family: "Microsoft YaHei";
 				}
 				.com-text{
 					padding: 0 0 0.14rem 0;
 					width: 90%;
+					font-family: "Microsoft YaHei";
 				}
 				.com-about{
 					width: 100%;
 					.com-time{
 						float:left;
+						color:#989898;
 					}
 					.com-up{
 						float:right;
+						width: 1rem;
+						height: 0.5rem;
+						text-align: right;
+						background: url("../../assets/svg/upup.svg") no-repeat 30%;
+						background-size:contain;
+						line-height: 0.5rem;
+						color: #999;
 					}
 				}
 		    }
 		}
+	}
+	.tip{
+		height: 1.4rem;
+		width: 100%;
+		line-height: 1.4rem;
+		text-align: center;
+		margin-bottom: 1.4rem;
+		color: #989898;
+	}
+	.footer{
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		height: 1.4rem;
+		width: 100%;
+		background: #444;
 	}
 
 </style>

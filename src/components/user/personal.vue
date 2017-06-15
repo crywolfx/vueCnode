@@ -1,20 +1,22 @@
 <template>
+<transition name="fade">
 	<div class="personal">
 		<vheader></vheader>
 		<div class="user">
-			<img :src="userInfo.avatar_url" alt="">
+			<img :src="[userInfo.avatar_url ? userInfo.avatar_url : 'http://orbmbw2o7.bkt.clouddn.com/CNode.svg']" alt="">
 			<div class="username">
 				<span>昵称:{{userInfo.loginname}}</span>
 				<span>积分:{{userInfo.score}}</span>
 			</div>
 		</div>
 		<ul class="related">
-			<li @click="checkTopics('topics')"><span class="related-icon create"></span><span class="related-text">创建话题</span></li>
-			<li @click="checkTopics('replies')"><span class="related-icon join"></span><span class="related-text">参与话题</span></li>
-			<li><span class="related-icon collect"></span><span class="related-text">收藏话题</span></li>
-			<li><span class="related-icon msg"></span><span class="related-text">未读消息</span></li>
+			<li @click="checkTopics(userInfo.recent_topics)"><span class="related-icon create"></span><span class="related-text">创建话题</span></li>
+			<li @click="checkTopics(userInfo.recent_replies)"><span class="related-icon join"></span><span class="related-text">参与话题</span></li>
+			<li @click="checkCollect"><span class="related-icon collect"></span><span class="related-text">收藏话题</span></li>
+			<li @click="checkMsg"><span class="related-icon msg"></span><span class="related-text">未读消息({{msgCount}})</span></li>
 		</ul>
 	</div>
+</transition>
 </template>
 <script>
 import header from './header'
@@ -25,6 +27,7 @@ export default{
 	data() {
 		return {
 			userInfo:{},
+			msgCount:'',
 		}
 	},
 	components:{
@@ -36,12 +39,21 @@ export default{
 		},
 		checkTopic() {
 			return this.$store.state.checkTopic;
+		},
+		token() {
+			return this.$store.state.token;
 		}
 	},
 	beforeRouteEnter(to,from,next) {
 		next(vm=>{
-			// vm.getUser(vm.user.loginname)
-			vm.getUser("alsotang");
+			if(!vm.user.loginname){
+				vm.userInfo={};
+				return false;
+			}
+			vm.getUser(vm.user.loginname);
+			if(vm.token){
+				vm.getMsgCount(vm.token);
+			}
 		})
 	},
 	methods: {
@@ -49,16 +61,53 @@ export default{
 			axios.get(api.personal(loginname)).then(res=>{
 				if(res.data.success){
 					this.userInfo=res.data.data;
-					this.$store.commit("SET_CHECK_TOPICS",this.userInfo.recent_topics);
-					this.$store.commit("SET_CHECK_REPLIES",this.userInfo.recent_replies);
 				}
 			})
 		},
+		getMsgCount(token) {
+			axios.get(api.getMsgCount(),{
+				params:{
+					accesstoken:token,
+				}
+			}).then(res=>{
+				if(res.data.success){
+					this.msgCount=res.data.data;
+				}
+			})
+		},
+		checkLogin() {
+			if(!this.userInfo.loginname){
+				this.$router.push({name:'login'});
+				return false;
+			}else{
+				return true;
+			}
+		},
 		checkTopics(type) {
+			if(!this.checkLogin()){
+				return;
+			}
+			this.$store.commit('SET_USER_TOPICS',type);
+			localStorage.setItem('userTopics',JSON.stringify(type));
 			this.$router.push({
   						name:'pertopic',
-  						params:{type:type},
   					});
+		},
+		checkCollect() {
+			if(!this.checkLogin()){
+				return;
+			}
+			this.$router.push({
+  						name:'percollect',
+  					});
+		},
+		checkMsg() {
+			if(!this.checkLogin()){
+				return;
+			}
+			this.$router.push({
+				name:'permsg',
+			})
 		}
 	}
 }
@@ -66,6 +115,16 @@ export default{
 
 </script>
 <style lang="scss" scoped>
+.fade-enter-active {
+  transition: all .2s ease-in-out;
+}
+.fade-leave-active {
+  transition: all .2s ease-in-out;
+}
+.fade-enter, .fade-leave-active {
+  transform: translateX(100%);
+  opacity: 0;
+}
 	.personal{
 		position: absolute;
 		width: 100%;

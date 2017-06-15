@@ -11,5 +11,14 @@ export default{
 	},
 	personal(loginname) {
 		return `${_baseUrl}/user/${loginname}`;
-	}
+	},
+	getCollect(loginname) {
+		return `${_baseUrl}/topic_collect/${loginname}`;
+	},
+	getMsgCount() {
+		return `${_baseUrl}/message/count`;
+	},
+	getMsg() {
+		return `${_baseUrl}/messages`;
+	},
 }

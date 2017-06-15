@@ -8,7 +8,7 @@
 				<div class="asi-name">{{user.loginname ? user.loginname : '点击头像登录'}}</div>
 			</div>
 			<ul class="asi-menu">
-				<li v-for="(value,index) in menu" :class="[active==value ? 'select' : '' ]" @click="changeAct(value);go(value)"><span :class="value+'-icon'"></span><span>{{menuText[index]}}</span></li>
+				<li class="asi-block" v-for="(value,index) in menu" :class="[active==value ? 'select' : '' ]" @click="changeAct(value);go(value)"><span :class="value+'-icon'"></span><span>{{menuText[index]}}</span></li>
 			</ul>
 		</div>
 	</div>
@@ -42,8 +42,7 @@
 			go(path) {
 				if(path=='logout'){
 					this.active='home';
-					localStorage.removeItem('userInfo');
-					localStorage.removeItem('token');
+					localStorage.clear();
 					this.$store.commit("SET_USER",{});
 					this.$store.commit("SET_TOKEN",'');
 				}else{
@@ -104,7 +103,7 @@
 			}
 			.asi-menu{
 				margin-top:0.3rem;
-				li{
+				.asi-block{
 					height: 1rem;
 					width: 100%;
 					font-size: 16px;

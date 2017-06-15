@@ -10,10 +10,9 @@ const store = new Vuex.Store({
 		type:'all',
 		rollDown:false,
 		checkAside:false,
-		user:JSON.parse(localStorage.getItem('userInfo')) || {},
+		user:localStorage.getItem('userInfo')&&JSON.parse(localStorage.getItem('userInfo')) || {},
 		token:localStorage.getItem('token') || '',
-		topics:{},
-		replies:{},
+		userTopics:localStorage.getItem('userTopics')&&JSON.parse(localStorage.getItem('userTopics')) || {},
 	},
 	mutations: {
 		SET_TYPE(state,type) {
@@ -31,14 +30,9 @@ const store = new Vuex.Store({
 		SET_TOKEN(state,token) {
 			state.token=token;
 		},
-		SET_CHECK_TOPICS(state,obj) {
-			state.topics=obj;
-			console.log(obj);
+		SET_USER_TOPICS(state,obj) {
+			state.userTopics=obj;
 		},
-		SET_CHECK_REPLIES(state,obj) {
-			state.replies=obj;
-			console.log(obj);
-		}
 	},
 	actions: {
 

@@ -1,8 +1,9 @@
 <template>
+<transition name="fade">
 	<div class="user-topic">
 		<vheader class="header"></vheader>
 		<ul>
-			<li class="user-topic-content" v-for="(value,index) in dataList">
+			<li class="user-topic-content" v-for="(value,index) in userTopics" @click="$router.push({name: 'topic', params:{id: value.id}})">
 				<img :src="value.author.avatar_url" alt="">
 				<div class="topic-content">
 					<div class="topic-user"><span class="user-name">{{value.author.loginname}}</span><span class="topic-time">{{use.formatDate(value.last_reply_at)}}</span></div>
@@ -10,7 +11,8 @@
 				</div>
 			</li>
 		</ul>
-	</div>	
+	</div>
+</transition>	
 </template>
 <script>
 import header from './header'
@@ -18,37 +20,36 @@ export default{
 	name:'topics',
 	data() {
 		return {
-			dataList:[],
-			type:'',
+			
 		}
 	},
 	components:{
 		vheader:header,
 	},
 	computed: {
-		topics() {
-			return this.$store.state.topics;
-		},
-		replies() {
-			return this.$store.state.replies;
-		},
-	},
-	updated() {
-		this.type=this.$route.params.type;
+		userTopics() {
+			return this.$store.state.userTopics;
+		}
 	},
 	watch: {
-		type(val) {
+		userTopics(val,oldval) {
 			console.log(val);
 		}
 	}
-	// mounted() {
-	// 	console.log(this.$route.params.type);
-	// 	this.$route.params.type=='topics' ? this.dataList=this.topics : this.dataList=this.replies;
-	// }
 }	
 
 </script>
 <style lang="scss" scoped>
+.fade-enter-active {
+  transition: all .2s ease-in-out;
+}
+.fade-leave-active {
+  transition: all .2s ease-in-out;
+}
+.fade-enter, .fade-leave-active {
+  transform: translateX(100%);
+  opacity: 0;
+}
 .user-topic{
 	position: absolute;
 	width: 100%;

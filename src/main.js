@@ -5,11 +5,11 @@ import App from './App'
 import router from './router'
 import store from './store/store' //封装vuex
 import api from './api/index'   //封装api
-import use from './assets/js/use'
+import use from './assets/js/use'  //时间转换
 
 
 Vue.use(api)
-Vue.prototype.use=use;
+Vue.prototype.use=use;  
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

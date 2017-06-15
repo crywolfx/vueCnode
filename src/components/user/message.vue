@@ -1,7 +1,7 @@
 <template>
 <transition name="fade">
 	<div class="message">
-		<vheader></vheader>
+		<vheader class="header"></vheader>
 		<span class="mark-all"></span>
 		<ul class="msg-ul">
 			<li class="msg-li" :class="[active==index ? 'select' : ' ' ]" v-for="(value,index) in tablist" @click="changAct(index)">{{value}}</li>

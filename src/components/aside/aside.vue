@@ -45,6 +45,11 @@
 					localStorage.clear();
 					this.$store.commit("SET_USER",{});
 					this.$store.commit("SET_TOKEN",'');
+					this.$store.commit('SET_TOAST',{
+						isShow:true,
+						content:'登出成功',
+						duration:1000,
+					})
 				}else{
 					this.$router.push({
 						name:path,

@@ -87,6 +87,13 @@ import listBlock from './listBlock'
 						this.isloading=false;
 					}
 				})
+				.catch(()=>{
+					this.$store.commit('SET_TOAST',{
+						isShow:true,
+						content:'获取列表失败',
+						duration:1000,
+					})
+				})
 			},
 	      scrollArtlist() {
 	      	this.scrollTop=parseInt(window.scrollY);

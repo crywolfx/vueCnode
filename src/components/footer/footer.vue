@@ -24,15 +24,7 @@
 			rolldown() {
 				return this.$store.state.rollDown;
 			},
-			// type() {
-			// 	return this.$store.state.type;
-			// },
 		},
-		// watch: {
-		// 	type(val){
-		// 		this.active=val;
-		// 	}
-		// }
 	}
 </script>
 <style lang="scss" scoped>

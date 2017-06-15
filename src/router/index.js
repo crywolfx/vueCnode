@@ -7,6 +7,7 @@ import Personal from '@/components/user/personal'
 import Pertopic from '@/components/user/topics'
 import Percollect from '@/components/user/collect'
 import Permessage from '@/components/user/message'
+import Post from '@/components/user/post'
 
 Vue.use(Router)
 
@@ -51,6 +52,11 @@ export default new Router({
       path: '/personal/message',
       name: 'permsg',
       component: Permessage
+    },
+    {
+      path: '/post',
+      name: 'post',
+      component: Post
     },
   ]
 });

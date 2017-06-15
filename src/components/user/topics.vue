@@ -33,7 +33,7 @@ export default{
 	},
 	watch: {
 		userTopics(val,oldval) {
-			console.log(val);
+
 		}
 	}
 }	

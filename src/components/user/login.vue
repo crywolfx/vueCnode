@@ -40,10 +40,19 @@ import header from './header'
 						this.$store.commit("SET_TOKEN",this.token);
 						localStorage.setItem('userInfo', JSON.stringify(res.data));
 						localStorage.setItem('token', this.token);
+						this.$store.commit('SET_TOAST',{
+							isShow:true,
+							content:'登录成功',
+							duration:1000,
+						})
 						this.$router.go(-1);
 					}
-				}).catch(err=>{
-					console.error("登录失败",err);
+				}).catch(()=>{
+					this.$store.commit('SET_TOAST',{
+						isShow:true,
+						content:'登录失败',
+						duration:1000,
+					})
 				})
 			}
 		}

@@ -28,7 +28,7 @@
 		name:'comment',
 		data() {
 			return {
-
+				isReverse:false,
 			}
 		},
 		props:['comm'],
@@ -43,6 +43,18 @@
 			},
 			sort() {
 				this.comm.reverse();
+				this.isReverse=!this.isReverse;
+				let content='';
+				if(this.isReverse){
+					content='按照时间顺序倒序排列'
+				}else{
+					content='按照时间顺序正序排列'
+				}
+				this.$store.commit('SET_TOAST',{
+						isShow:true,
+						content:content,
+						duration:1000,
+					})
 			}
 		},
 	}
@@ -53,11 +65,10 @@
   transition: all .3s ease-in-out;
 }
 .fade-leave-active {
-  transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  transition: all .3s ease-in-out;
 }
 .fade-enter, .fade-leave-active {
-  transform: translateY(-100%);
-  opacity: 0;
+  transform: translateX(100%);
 }
 .com-content{
 	// height: 100%;

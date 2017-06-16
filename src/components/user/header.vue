@@ -1,10 +1,17 @@
 <template>
 	<div class="header">
-		<div class="back" @click="$router.go(-1)"></div>
+		<div class="back" @click="$router.go(-1);changeAct()"></div>
 	</div>
 </template>
 <script>
-	
+	export default{
+		name:'header',
+		methods:{
+			changeAct(){
+				this.$store.commit('SET_ASDACT','home');
+			}
+		}
+	}
 </script>
 <style lang='scss' scoped>
 .fade-enter-active {

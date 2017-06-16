@@ -3,7 +3,7 @@
 <header v-show="!rolldown">
 	<div class="search">
 		<div class="search-icon"></div>
-		<div class="search-text">搜索node内容</div>
+		<div class="search-text" @click="search">搜索node内容</div>
 	</div>
 	<div class="touch" @click="checkAside"></div>
 </header>
@@ -21,6 +21,13 @@
 		methods: {
 			checkAside() {
 				this.$store.commit('CHECK_ASIDE',true)
+			},
+			search() {
+				this.$store.commit('SET_TOAST', {
+					isShow: true,
+					content: "暂未开发",
+					duration: 1000,
+				})
 			}
 		}
 	}

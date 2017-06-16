@@ -8,6 +8,7 @@ import Pertopic from '@/components/user/topics'
 import Percollect from '@/components/user/collect'
 import Permessage from '@/components/user/message'
 import Post from '@/components/user/post'
+import About from '@/components/about/about'
 
 Vue.use(Router)
 
@@ -58,5 +59,10 @@ export default new Router({
       name: 'post',
       component: Post
     },
+    {
+      path: '/about',
+      name: 'about',
+      component: About
+    }
   ]
 });

@@ -29,6 +29,11 @@ import header from './header'
 		methods: {
 			goLogin() {
 				if(!this.token.trim()){
+					this.$store.commit('SET_TOAST',{
+						isShow:true,
+						content:'请输入token',
+						duration:1000,
+					})
 					return;
 				}
 				axios.post(api.login(),{
@@ -36,6 +41,7 @@ import header from './header'
 				})
 				.then(res=>{
 					if(res.data.success){
+						localStorage.clear();
 						this.$store.commit("SET_USER",res.data);
 						this.$store.commit("SET_TOKEN",this.token);
 						localStorage.setItem('userInfo', JSON.stringify(res.data));

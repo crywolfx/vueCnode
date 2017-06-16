@@ -19,6 +19,7 @@ const store = new Vuex.Store({
 			duration:1000,
 		},
 		modifyTopic:'',
+		asdAct:'home',
 	},
 	mutations: {
 		SET_TYPE(state,type) {
@@ -44,6 +45,9 @@ const store = new Vuex.Store({
 		},
 		MODIFY_POST(state,obj) {
 			state.modifyTopic=obj;
+		},
+		SET_ASDACT(state,act) {
+			state.asdAct=act;
 		}
 	},
 	actions: {

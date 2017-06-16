@@ -19,7 +19,6 @@
 		name:'aside',
 		data() {
 			return {
-				active:'home',
 				menu:['home','personal','post','logout','about'],
 				menuText:['主 页','个 人','发 布','登 出','关 于']
 			}
@@ -31,13 +30,16 @@
 			user() {
 				return this.$store.state.user;
 			},
+			active() {
+				return this.$store.state.asdAct;
+			}
 		},
 		methods: {
 			colseAside() {
 				this.$store.commit('CHECK_ASIDE',false);
 			},
 			changeAct(val) {
-				this.active=val;
+				this.$store.commit('SET_ASDACT',val);
 			},
 			go(path) {
 				if(path=='logout'){

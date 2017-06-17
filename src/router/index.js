@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Topic from '@/components/topic/topic'
 import Topics from '@/components/content/index'
+import Comment from '@/components/comment/comment'
 import Login from '@/components/user/login'
 import Personal from '@/components/user/personal'
 import Pertopic from '@/components/user/topics'
@@ -13,8 +14,7 @@ import About from '@/components/about/about'
 Vue.use(Router)
 
 export default new Router({
-  routes: [
- 	 {
+  routes: [{
       path: '/',
       name: 'topics',
       component: Topics
@@ -28,6 +28,11 @@ export default new Router({
       path: '/topic/:id',
       name: 'topic',
       component: Topic
+    },
+    {
+      path: '/topic/comment',
+      name: 'comment',
+      component: Comment
     },
     {
       path: '/login',

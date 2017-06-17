@@ -2,7 +2,7 @@
 	<transition name="fade">
 		<div class="com-content">
 			<div class="header">
-				<div class="back" @click="back()"></div>
+				<div class="back" @click="$router.go(-1)"></div>
 				<div class="sort" @click="sort()"></div>
 			</div>
 			<ul class="com-list">
@@ -47,19 +47,22 @@ export default {
 			replyId: '',
 		}
 	},
-	props: ['topic'],
 	computed: {
 		token() {
 			return this.$store.state.token;
 		},
 		user() {
 			return this.$store.state.user;
+		},
+		topic() {
+			return this.$store.state.topic;
 		}
 	},
+	beforeRouteEnter(to, from, next) {
+		window.scrollTo(0, 0);
+		next()
+	},
 	methods: {
-		back() {
-			this.$emit('isCheckCom', false);
-		},
 		sort() {
 			this.topic.replies.reverse();
 			this.isReverse = !this.isReverse;
@@ -86,11 +89,11 @@ export default {
 			}
 			return true;
 		},
-		setUp(id, index,loginname) {
-			if(!this.checkLogin()){
+		setUp(id, index, loginname) {
+			if (!this.checkLogin()) {
 				return;
 			}
-			if(loginname==this.user.loginname){
+			if (loginname == this.user.loginname) {
 				this.$store.commit('SET_TOAST', {
 					isShow: true,
 					content: "不能给自己点赞呦",
@@ -127,14 +130,14 @@ export default {
 			})
 		},
 		reply(name, id) {
-			if(!this.checkLogin()){
+			if (!this.checkLogin()) {
 				return;
 			}
 			this.sendContent = '@' + name + ' ';
 			this.replyId = id;
 		},
 		sendComm() {
-			if(!this.checkLogin()){
+			if (!this.checkLogin()) {
 				return;
 			}
 			if (this.sendContent.trim() == '') {
@@ -180,9 +183,6 @@ export default {
 			})
 		}
 	},
-	created() {
-		window.scrollTo(0, 0);
-	}
 }
 
 </script>

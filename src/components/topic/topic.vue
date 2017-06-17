@@ -4,7 +4,7 @@
 			<div class="art-content" v-if="!isCheckCom">
 				<header>
 					<div class="back" @click="$router.push({name:'topics'})"></div>
-					<div class="search">{{title}}</div>
+					<div class="search" @click="search">{{title}}</div>
 					<div class="ctrl" @click="showAside"></div>
 					<div class="share"></div>
 				</header>
@@ -45,7 +45,7 @@
 								<div class="icon" :class="[dataRes.is_collect ? 'has-collect-clt' : 'clt']"></div>
 								<div class="text" @click="collectTopic">收藏</div>
 							</div>
-							<div class="v-comment" @click="checkCom()">
+							<div class="v-comment" @click="$router.push({name: 'comment'})">
 								<div class="icon cmt"></div>
 								<div class="text">{{dataRes.reply_count}}</div>
 							</div>
@@ -53,14 +53,13 @@
 					</footer>
 				</transition>
 			</div>
-			<vcomment v-if="isCheckCom" @isCheckCom="changeCheckCom" :topic="dataRes"></vcomment>
 		</div>
 	</transition>
 </template>
 <script>
 import axios from 'axios'
 import api from '../../api/index'
-import comment from '../comment/comment'
+
 export default {
 	name: 'topic',
 	data() {
@@ -69,7 +68,6 @@ export default {
 				author: {}
 			},
 			scrollTop: 0,
-			lastScrollTop: 0,
 			title: "搜索node内容",
 			isgotop: false,
 			createTime: '00-00-00',
@@ -86,9 +84,6 @@ export default {
 		token() {
 			return this.$store.state.token;
 		},
-	},
-	components: {
-		vcomment: comment,
 	},
 	watch: {
 		scrollTop(val, oldval) {
@@ -130,6 +125,7 @@ export default {
 				if (res.data.success == true) {
 					this.isloading = false;
 					this.dataRes = res.data.data;
+					this.$store.commit('SET_TOPIC', res.data.data);
 					let yymmdd = this.dataRes.create_at.split('T')[0];
 					let time = this.dataRes.create_at.split('T')[1].split('.')[0];
 					this.createTime = yymmdd + ' ' + time;
@@ -192,14 +188,6 @@ export default {
 				}
 			})
 		},
-		checkCom() {
-			this.lastScrollTop = this.scrollTop;
-			this.isCheckCom = true;
-		},
-		changeCheckCom(val) {
-			window.scrollTo(0, this.lastScrollTop);
-			this.isCheckCom = false;
-		},
 		developed() {
 			this.$store.commit('SET_TOAST', {
 				isShow: true,
@@ -225,6 +213,13 @@ export default {
 			this.$router.push({
 				name: 'post'
 			});
+		},
+		search() {
+			this.$store.commit('SET_TOAST', {
+				isShow: true,
+				content: "暂未开发",
+				duration: 1000,
+			})
 		}
 	},
 

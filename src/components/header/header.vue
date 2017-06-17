@@ -1,9 +1,9 @@
 <template>
 <transition name="fade">
 <header v-show="!rolldown">
-	<div class="search">
+	<div class="search" @click="search">
 		<div class="search-icon"></div>
-		<div class="search-text" @click="search">搜索node内容</div>
+		<div class="search-text">搜索node内容</div>
 	</div>
 	<div class="touch" @click="checkAside"></div>
 </header>

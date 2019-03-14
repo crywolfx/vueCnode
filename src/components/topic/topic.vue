@@ -393,7 +393,6 @@ export default {
 			border: 1px solid #777;
 		}
 	}
-	,
 	.art-line {
 		width: 100%;
 		height: 1px;

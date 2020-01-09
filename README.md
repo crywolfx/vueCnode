@@ -102,12 +102,5 @@ npm run build
 
 ---------- 
 
-想写个vue项目练练手，但是不知道写什么，本来想写豆瓣，后来发现写cnode社区好像更合适一点（虽然都被大家写烂了）。然后说写就写，花了几天时间把这点玩意弄完了。样式方面实在是不知道搞什么样子T_T，就拿出手机参考了一下知乎，部分样式和色调也参考了[@VincentSea](https://dodov.github.io/vueCnode/index.html#/)   
-
 <br />  
 
-<br />
-----------
-## 我的
-- github  [https://github.com/crywolfx/](https://github.com/crywolfx/)
-- blog [http://blog.wxink.xyz](http://blog.wxink.xyz)
